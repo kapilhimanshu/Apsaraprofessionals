@@ -798,19 +798,67 @@
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
 </a>
 
+
+<!-- CONTACT NUMBER POPUP -->
+<div class="call-modal-overlay" id="callModalOverlay">
+  <div class="call-modal">
+
+    <button class="call-modal-close"
+            id="callModalClose"
+            aria-label="Close">
+      &times;
+    </button>
+
+    <div class="call-modal-icon">
+      &#9742;
+    </div>
+
+    <h3>Call Apsara Professionals</h3>
+    <p>Tap the number below to connect with us directly.</p>
+
+    <div class="call-modal-number">
+      97294 68262
+    </div>
+
+    <div class="call-modal-actions">
+
+      <a href="tel:+919729468262"
+         class="btn btn-solid"
+         style="width:100%;justify-content:center;">
+        Call now
+      </a>
+
+      <button class="btn btn-outline"
+              id="callModalCopy"
+              style="width:100%;justify-content:center;">
+        Copy number
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- WEBSITE JAVASCRIPT -->
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
 
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
+
   hamburgerBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
   });
+
   document.querySelectorAll('.mobile-menu a').forEach(a => {
-    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
   });
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -820,24 +868,39 @@
         }
       });
     }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      io.observe(el);
+    });
   } else {
-    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in-view'));
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.classList.add('in-view');
+    });
   }
 
-  const callModalOverlay = document.getElementById('callModalOverlay');
-  const callModalClose = document.getElementById('callModalClose');
-  const callModalCopy = document.getElementById('callModalCopy');
+  // CONTACT POPUP FUNCTIONALITY
 
-  function openCallModal(){
+  const callModalOverlay =
+    document.getElementById('callModalOverlay');
+
+  const callModalClose =
+    document.getElementById('callModalClose');
+
+  const callModalCopy =
+    document.getElementById('callModalCopy');
+
+  function openCallModal(event) {
+    if (event) event.preventDefault();
     callModalOverlay.classList.add('open');
   }
-  function closeCallModal(){
+
+  function closeCallModal() {
     callModalOverlay.classList.remove('open');
   }
 
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (link.closest('.call-modal')) return;
+
     link.addEventListener('click', (e) => {
       e.preventDefault();
       openCallModal();
@@ -845,9 +908,13 @@
   });
 
   callModalClose.addEventListener('click', closeCallModal);
+
   callModalOverlay.addEventListener('click', (e) => {
-    if (e.target === callModalOverlay) closeCallModal();
+    if (e.target === callModalOverlay) {
+      closeCallModal();
+    }
   });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeCallModal();
   });
@@ -855,30 +922,14 @@
   callModalCopy.addEventListener('click', () => {
     navigator.clipboard.writeText('9729468262').then(() => {
       callModalCopy.textContent = 'Copied!';
-      setTimeout(() => { callModalCopy.textContent = 'Copy number'; }, 1800);
+      setTimeout(() => {
+        callModalCopy.textContent = 'Copy number';
+      }, 1800);
     }).catch(() => {
       callModalCopy.textContent = '9729468262';
     });
   });
 </script>
-
-<div class="call-modal-overlay" id="callModalOverlay">
-  <div class="call-modal">
-    <button class="call-modal-close" id="callModalClose" aria-label="Close">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <div class="call-modal-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    </div>
-    <h3>Call Apsara Professionals</h3>
-    <p>Tap the number below to connect with us directly.</p>
-    <div class="call-modal-number">97294 68262</div>
-    <div class="call-modal-actions">
-      <a href="tel:+919729468262" class="btn btn-solid" style="width:100%;justify-content:center;">Call now</a>
-      <button class="btn btn-outline" id="callModalCopy" style="width:100%;justify-content:center;">Copy number</button>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
